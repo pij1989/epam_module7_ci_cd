@@ -1,0 +1,61 @@
+plugins{
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.20'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-envers
+    implementation group: 'org.hibernate', name: 'hibernate-envers', version: '5.5.2.Final'
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.3.5'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+war{
+    archiveFileName = 'rest-api.war'
+}
+
+compileJava.inputs.files(processResources)
+
+/*group 'com.epam.esm'
+version '1.0-SNAPSHOT'*/
+
+bootWar.enabled = false
+
+
