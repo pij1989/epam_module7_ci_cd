@@ -16,7 +16,8 @@ java {
 sonarqube {
     properties {
         property 'sonar.projectName', 'Rest api'
-        property 'sonar.login', '326963695ae52178b2fdb2d05736a00f65675cc7'
+/*        property 'sonar.login', '326963695ae52178b2fdb2d05736a00f65675cc7'
+        property 'sonar.login', 'e96379848e51699dd1f5f70b3bf4df7260496f3c'*/
     }
 }
 
