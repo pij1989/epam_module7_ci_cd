@@ -3,11 +3,19 @@ plugins{
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'war'
+    id 'org.sonarqube' version '3.3'
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
+        property 'sonar.login', '326963695ae52178b2fdb2d05736a00f65675cc7'
     }
 }
 
