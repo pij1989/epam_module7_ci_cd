@@ -4,6 +4,7 @@ plugins{
     id 'java'
     id 'war'
     id 'org.sonarqube' version '3.3'
+    id "jacoco"
 }
 
 java {
@@ -14,8 +15,14 @@ java {
 
 sonarqube {
     properties {
-        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
+        property 'sonar.projectName', 'Rest api'
         property 'sonar.login', '326963695ae52178b2fdb2d05736a00f65675cc7'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
     }
 }
 
@@ -62,5 +69,17 @@ war{
 compileJava.inputs.files(processResources)
 
 bootWar.enabled = false
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+tasks.named('sonarqube').configure {
+    dependsOn test
+}
 
 
